@@ -1,0 +1,71 @@
+#include<Wire.h>
+int ledPin2=2;
+int ledPin3=3;
+int ledPin4=4;
+int ledPin5=5;
+char state;
+
+void setup()
+{
+  pinMode(ledPin2,OUTPUT);
+  pinMode(ledPin3,OUTPUT);
+  pinMode(ledPin4,OUTPUT);
+  pinMode(ledPin5,OUTPUT);
+
+  digitalWrite(ledPin2,LOW);
+  digitalWrite(ledPin3,LOW);
+  digitalWrite(ledPin4,LOW);
+  digitalWrite(ledPin5,LOW);
+
+  Serial.begin(9600);
+}
+
+void loop(){
+
+  if(Serial.available()>0){
+    state=Serial.read();
+
+    switch(state)
+    {
+      case 'A':
+      digitalWrite(ledPin2,HIGH);
+      Serial.print("LED 2 ON");
+      break;
+
+      case 'a':
+      digitalWrite(ledPin2,LOW);
+      Serial.print("LED 2 Off");
+      break;
+
+      case 'B':
+      digitalWrite(ledPin3,HIGH);
+      Serial.print("LED 3 ON");
+      break;
+     
+      case 'b':
+      digitalWrite(ledPin3,LOW);
+      Serial.print("LED 3 LOW");
+      break;
+
+      case 'C':
+      digitalWrite(ledPin4,HIGH);
+      Serial.print("LED 4 ON");
+      break;
+
+      case 'c':
+      digitalWrite(ledPin4,LOW);
+      Serial.print("LED 4 Off");
+      break;
+
+      case 'D':
+      digitalWrite(ledPin5,HIGH);
+      Serial.print("LED 5 ON");
+      break;
+
+      case 'd':
+      digitalWrite(ledPin5,LOW);
+      Serial.print("LED 5 OFF");
+      break;
+    }
+  }
+}
